@@ -1,0 +1,30 @@
+.links__link {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #000;
+  transition: opacity 0.3s linear;
+}
+.links__link:hover {
+  opacity: 0.6;
+}
+.links__link.active {
+  font-weight: 400;
+}
+.links {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 212px;
+  margin-block: 0;
+  height: 100%;
+  align-items: center;
+}
+@media screen and (max-width: 1020px) {
+  .links {
+    display: none;
+  }
+}

@@ -1,0 +1,132 @@
+.movies-card {
+  position: relative;
+  max-width: 360px;
+  background-color: #fff;
+  border-radius: 6px;
+}
+@media screen and (max-width: 1020px) {
+  .movies-card {
+    max-width: 339px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies-card {
+    max-width: 300px;
+  }
+}
+
+.movies-card__image {
+  border-radius: 6px 6px 0px 0px;
+  cursor: pointer;
+  max-height: 201px;
+  object-fit: cover;
+  width: 100%;
+}
+@media screen and (max-width: 1020px) {
+  .movies-card__image {
+    max-height: 190px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies-card__image {
+    max-height: 168px;
+  }
+}
+.movies-card__button {
+  cursor: pointer;
+  border-radius: 21px;
+  height: 21px;
+  position: absolute;
+  right: 14px;
+  top: 15px;
+  margin: 0em;
+  padding: 0px;
+  border-width: 2px;
+  border-style: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 9px;
+}
+.movies-card__button_hidden {
+  display: none;
+}
+.movies-card__button_pink {
+  background-color: #ee3465;
+  padding: 0 6px;
+}
+.movies-card__buttonSave {
+  background: url("../../images/check-mark.svg") no-repeat;
+  background-color: #ee3465;
+  height: 7px;
+  width: 9px;
+}
+.movies-card__buttonRemove {
+  background-image: url("../../images/card-button-delete.svg");
+  height: 7px;
+  width: 7px;
+}
+
+.movies-card__info {
+  padding: 11px 13px 0;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+}
+@media screen and (max-width: 1020px) {
+  .movies-card__info {
+    padding: 21px 0px 0;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies-card__info {
+    padding: 12px 0px 0;
+  }
+}
+.movies-card__title {
+  max-width: 250px;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+@media screen and (max-width: 1020px) {
+  .movies-card__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies-card__title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+.movies-card__description {
+  max-height: 10px;
+  margin: 0 0 14px;
+  width: 52px;
+  padding: 4px 0px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 10px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  text-align: center;
+  color: #a0a0a0;
+}
+.movies-card__text-button {
+  margin: 0;
+  padding: 0 10px;
+}
+.movies-card__img-Remove {
+  padding: 0 7px;
+}

@@ -1,0 +1,150 @@
+.form-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 124px 0 0 0;
+}
+@media screen and (max-width: 1020px) {
+  .form-profile {
+    margin: 97px 0 0 0;
+  }
+}
+@media screen and (max-width: 560px) {
+  .form-profile {
+    margin: 80px 0 0 0;
+  }
+}
+.form-profile__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+@media screen and (max-width: 560px) {
+  .form-profile__container {
+  }
+}
+
+.form-profile__container:first-of-type {
+  border-bottom: 1px solid #e8e8e8;
+}
+.form-profile__button {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+  padding: 0;
+  border: none;
+  margin-top: 186px;
+  background: none;
+  margin-bottom: 14px;
+  min-width: 260px;
+}
+
+.form-profile__button:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 1020px) {
+  .form-profile__button {
+    margin-top: 175px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .form-profile__button {
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 345px;
+    margin-bottom: 14px;
+  }
+}
+.form-profile__input {
+  outline: none;
+  padding: 0px;
+  margin: 0;
+  border: none;
+  text-align: right;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  font-family: "Inter", Arial, sans-serif;
+}
+@media screen and (max-width: 560px) {
+  .form-profile__input {
+  }
+}
+
+.form-profile__text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+.profile {
+  max-width: 410px;
+  margin: 0 auto;
+  padding: 74px 0;
+}
+@media screen and (max-width: 1020px) {
+  .profile {
+    padding: 310px 0 269px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .profile {
+    max-width: 260px;
+    padding: 144px 0 40px;
+  }
+}
+
+.profile__title {
+  text-align: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 74px 0 0 0;
+}
+
+@media screen and (max-width: 1020px) {
+  .profile__title {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 560px) {
+  .profile__title {
+    margin: 0;
+  }
+}
+
+.profile__link {
+  color: #ee3465;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  transition: opacity 0.3s linear;
+}
+.profile__link:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 560px) {
+  .profile__link {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
