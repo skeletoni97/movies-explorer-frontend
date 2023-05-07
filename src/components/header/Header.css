@@ -1,13 +1,14 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 16px 70px;
+  padding: 16px 30px;
   /* height: 74px; */
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+ 
   z-index: 1;
   box-sizing: border-box;
 }
@@ -46,7 +47,7 @@
   }
 }
 .header__navAut-link:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .header__navAut-link_signin {
   color: #000;
@@ -65,6 +66,7 @@
 
 .header__blocks {
   display: flex;
+  max-width: 1140px;
   width: 100%;
   justify-content: space-between;
 }
@@ -102,6 +104,10 @@
   position: relative;
   z-index: 2;
   overflow: hidden;
+}
+.menu-btn:active {
+  position: fixed;
+  right: 20px;
 }
 
 @media screen and (min-width: 1020px) {

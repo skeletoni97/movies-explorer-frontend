@@ -96,22 +96,26 @@
   }
  
   .promo__link {
-    border: 1px solid hsla(0, 0%, 0%, 0.6);
-    border-radius: 3px;
-    color: black;
-    cursor: pointer;
+    margin: 146px 0 75px;
+    padding: 9px 0;
+    width: 127px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+    border: 1px solid hsla(0, 0%, 0%, 0.6);
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
     text-decoration: none;
-    margin: 146px 0 75px;
     outline: none;
     padding: 9px 0;
     text-align: center;
-    transition: 0.2s linear;
-    width: 127px;
+    transition: opacity 0.3s linear;
+  }
+  .promo__link:hover  {
+    opacity: 0.6;
   }
   @media screen and (max-width: 1020px) {
     .promo__link {

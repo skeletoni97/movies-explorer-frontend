@@ -154,6 +154,7 @@ function Movies({
         isChecked={isShortFilmsOnly}
         onChange={handleFilterCheckboxChange}
       />
+   
       {isLoading && <Preloader />}
       {isError && <div className="movies__error">Ошибка загрузки данных</div>}
       {!isLoading && !isError && (

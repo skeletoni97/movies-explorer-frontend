@@ -1,50 +1,89 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import Logo from "../Logo/Logo";
 import "./Login.css";
 function Login(props) {
   // const [name, setIsName] = useState("");
   const [email, setIsEmail] = useState("");
   const [password, setIsPassword] = useState("");
+  const {
+    register,
+  formState: {
+    errors, isValid
+  },
+    handleSubmit,
+    reset
 
-  function handleSetEmail(e) {
-    setIsEmail(e.target.value);
-  }
+} = useForm({mode: 'onBlur'})
+const onSubmit = (data) => {
+  
+   props.onSignin(email, password);
+  // alert(JSON.stringify(data));
+  reset();
+}
 
-  function handleSetPassword(e) {
-    setIsPassword(e.target.value);
-  }
+  // function handleSetEmail(e) {
+  //   setIsEmail(e.target.value);
+  // }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    props.onSignin(email, password);
-  }
+  // function handleSetPassword(e) {
+  //   setIsPassword(e.target.value);
+  // }
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   props.onSignin(email, password);
+  // }
+console.log(isValid)
   return (
     <section className="login">
       <Logo></Logo>
       <h2 className="login__title">Рады видеть!</h2>
-      <form className="form-login" onSubmit={handleSubmit}>
+      <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
         <label className="form-login__label" htmlFor="Email">
           E-mail
           <input
-            value={email || ""}
-            onChange={handleSetEmail}
-            type="email"
+          {...register('email',{
+            required: "Поле обязательно к заполнению.",
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Введите корректный email",
+            },
+            minLength: {
+              value: 3,
+              message: "Минимум 2 символа."
+            }
+          })}
+          type="email"
             className="form-ligin__input"
+            placeholder="email"
           />
+          <span className="form-ligin__spanError">{errors?.email &&<p className="form-ligin__textError">{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
         </label>
         <label className="form-login__label" htmlFor="password">
           Пароль
           <input
-            value={password || ""}
-            onChange={handleSetPassword}
-            type="Password"
+          placeholder="password"
+            type="password"
             className="form-ligin__input"
+            {...register('password',{
+              required: "Поле обязательно к заполнению.",
+              minLength: {
+                value: 8,
+                message: "Минимум 8 символов."
+              },
+              maxLength: {
+                value: 32,
+                message: "Максимум 32 символа."
+              }
+            })}
           />
+          <span className="form-ligin__spanError">{errors?.password &&<p className="form-ligin__textError">{errors?.password?.message || "Что-то пошло не так..."}</p>}</span>
         </label>
-        <button type="submit" className="form-ligin__button">
+        <button type="submit" disabled={!isValid} className={`form-ligin__button ${isValid? "" : "form-ligin__button_disabled"}`}>
           Войти
-        </button>
+        </button> 
       </form>
 
       <p className="login__text">

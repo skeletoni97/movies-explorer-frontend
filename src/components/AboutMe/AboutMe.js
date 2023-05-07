@@ -1,4 +1,5 @@
 import './AboutMe.css';
+import { Link } from "react-router-dom";
 import AboutMeFoto from '../../images/AboutMe-foto.png'
 function AboutMe() {
   return (
@@ -15,7 +16,7 @@ function AboutMe() {
           Контур». После того, как прошёл курс по веб&#8211;разработке,
           начал заниматься фриланс-заказами и ушёл с постоянной работы.
         </p>
-        <p className="aboutMe__github">Github</p>
+        <Link className="aboutMe__github" to="https://github.com/skeletoni97" target="_blank" rel="noopener noreferrer">Github</Link>
       </div>
       <img className="aboutMe__foto" alt="фото" src={AboutMeFoto}></img>
     </div>

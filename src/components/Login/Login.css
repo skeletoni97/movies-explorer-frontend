@@ -37,6 +37,9 @@
 .form-ligin__button:hover {
   opacity: 0.6;
 }
+.form-ligin__button_disabled {
+  opacity: 0.6;
+}
 @media screen and (max-width: 560px) {
   .form-ligin__button {
     font-size: 12px;
@@ -58,7 +61,27 @@
   line-height: 16px;
   font-family: "Inter", Arial, sans-serif;
 }
+.form-ligin__input:focus {
+  box-shadow: 0 0 3px 3px #d9d9d9;
+}
 
+.form-ligin__input:invalid {
+  border: 1px solid #EE3465;
+}
+.form-ligin__spanError {
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+margin: 0;
+padding: 0;
+color: #EE3465;
+}
+.form-ligin__textError {
+  position: absolute;
+  margin: 10px 0;
+}
 .login {
   max-width: 396px;
   margin: 0 auto;

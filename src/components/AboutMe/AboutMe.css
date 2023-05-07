@@ -52,23 +52,20 @@
 }
 
 .aboutMe__github {
-  margin: 98px 0 0;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
 }
-@media screen and (max-width: 1020px) {
-  .aboutMe__github {
-    margin: 87px 0 0;
-  }
+.aboutMe__github:hover {
+  opacity: 0.6;
 }
-@media screen and (max-width: 560px) {
-  .aboutMe__github {
-    margin: 40px 0 0;
-  }
-}
+
 .aboutMe__job {
   margin: 0;
   padding: 0;
@@ -119,7 +116,7 @@
 }
 
 .aboutMe__text {
-  margin: 25px 0 0;
+  margin: 25px 0 98px;
   padding: 0;
   font-family: "Inter";
   font-style: normal;
@@ -130,7 +127,7 @@
 }
 @media screen and (max-width: 1020px) {
   .aboutMe__text {
-    margin: 20px 0 0;
+    margin: 20px 0 87px;
     max-width: 364px;
     font-size: 12px;
     line-height: 18px;
@@ -138,6 +135,7 @@
 }
 @media screen and (max-width: 560px) {
   .aboutMe__text {
+    margin: 20px 0 40px;
     font-size: 11px;
     line-height: 16px;
   }
