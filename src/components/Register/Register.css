@@ -75,7 +75,10 @@ line-height: 12px;
 margin: 0;
 padding: 0;
 color: #EE3465;
-
+}
+.form-register__textError {
+  position: absolute;
+  margin: 10px 0;
 }
 .register {
   max-width: 396px;
@@ -132,6 +135,7 @@ color: #EE3465;
   text-decoration: none;
   display: inline-block;
   margin-left: 6px;
+  cursor: pointer;
 }
 .register__link:hover {
   opacity: 0.6;

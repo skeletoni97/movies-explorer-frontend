@@ -62,7 +62,7 @@ const onSubmit = (data) => {
             })}
             className="form-register__input"
           />
-           <span className="form-register__spanError">{errors?.name &&<p>{errors?.name?.message || "Что-то пошло не так..."}</p>}</span>
+           <span className="form-register__spanError">{errors?.name &&<p className="form-register__textError">{errors?.name?.message || "Что-то пошло не так..."}</p>}</span>
         </label>
         <label className="form-register__label" htmlFor="email">
           E-mail
@@ -78,7 +78,7 @@ const onSubmit = (data) => {
             placeholder="email"
             className=" form-register__input"
           />
-           <span className="form-register__spanError">{errors?.email &&<p>{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
+           <span className="form-register__spanError">{errors?.email &&<p className="form-register__textError">{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
        
         </label>
         <label className="form-register__label" htmlFor="Password">
@@ -100,7 +100,7 @@ const onSubmit = (data) => {
             type="Password"
             className=" form-register__input"
           />
-           <span className="form-register__spanError">{errors?.password &&<p>{errors?.password?.message || "Что-то пошло не так..."}</p>}</span>
+           <span className="form-register__spanError">{errors?.password &&<p className="form-register__textError">{errors?.password?.message || "Что-то пошло не так..."}</p>}</span>
        
         </label>
         <button type="submit" disabled={!isValid} className={`form-register__button ${isValid? "" : "form-register__button_disabled"}`}>

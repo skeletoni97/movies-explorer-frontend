@@ -67,6 +67,7 @@
   line-height: 16px;
   color: #000000;
   text-decoration: none;
+  cursor: pointer;
 }
 @media screen and (max-width: 560px) {
   .footer__link {

@@ -69,4 +69,9 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+.show-more__button:hover {
+  opacity: 0.6;
 }

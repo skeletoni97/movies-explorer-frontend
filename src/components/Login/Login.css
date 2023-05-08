@@ -138,6 +138,7 @@ color: #EE3465;
   text-decoration: none;
   display: inline-block;
   margin-left: 6px;
+  cursor: pointer;
   transition: opacity 0.3s linear;
 }
 .login__link:hover {

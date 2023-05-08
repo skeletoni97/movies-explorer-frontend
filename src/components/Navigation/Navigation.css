@@ -4,6 +4,7 @@
   font-weight: 500;
   text-decoration: none;
   color: #000;
+  cursor: pointer;
   transition: opacity 0.3s linear;
 }
 .links__link:hover {
