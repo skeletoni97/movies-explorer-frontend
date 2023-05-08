@@ -60,7 +60,7 @@ const onSubmit = (data) => {
                 message: "Максимум 32 символа."
               }
             })}
-            className="form-register__input"
+            className={`form-register__input ${errors.name ? 'form-ligin__input--error' : ''}`}
           />
            <span className="form-register__spanError">{errors?.name &&<p className="form-register__textError">{errors?.name?.message || "Что-то пошло не так..."}</p>}</span>
         </label>
@@ -76,7 +76,7 @@ const onSubmit = (data) => {
             })}
             onChange={handleSetEmail}
             placeholder="email"
-            className=" form-register__input"
+            className={`form-register__input ${errors.email ? 'form-ligin__input--error' : ''}`}
           />
            <span className="form-register__spanError">{errors?.email &&<p className="form-register__textError">{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
        
@@ -98,7 +98,7 @@ const onSubmit = (data) => {
             onChange={handleSetPassword}
             placeholder="Password"
             type="Password"
-            className=" form-register__input"
+            className={`form-register__input ${errors.password ? 'form-ligin__input--error' : ''}`}
           />
            <span className="form-register__spanError">{errors?.password &&<p className="form-register__textError">{errors?.password?.message || "Что-то пошло не так..."}</p>}</span>
        

@@ -90,7 +90,9 @@
 .form-profile__textError {
   margin: 0;
 }
-
+.form-profile__input--error {
+  border: 1px solid #EE3465;
+}
 
 .form-profile__text {
   font-family: "Inter";

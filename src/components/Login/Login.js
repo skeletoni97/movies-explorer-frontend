@@ -56,7 +56,7 @@ console.log(isValid)
             }
           })}
           type="email"
-            className="form-ligin__input"
+            className={`form-ligin__input ${errors.email ? 'form-ligin__input--error' : ''}`}
             placeholder="email"
           />
           <span className="form-ligin__spanError">{errors?.email &&<p className="form-ligin__textError">{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
@@ -66,7 +66,7 @@ console.log(isValid)
           <input
           placeholder="password"
             type="password"
-            className="form-ligin__input"
+            className={`form-ligin__input ${errors.password ? 'form-ligin__input--error' : ''}`}
             {...register('password',{
               required: "Поле обязательно к заполнению.",
               minLength: {

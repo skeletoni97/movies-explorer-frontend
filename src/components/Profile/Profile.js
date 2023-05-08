@@ -60,7 +60,7 @@ function Profile({ signOut, isLogin, setCurrentUser }) {
         onChange={handleSetName}
         type="name"
         placeholder="Имя"
-        className="form-profile__input"/>
+        className={`form-profile__input ${errors.name ? 'form-profile__input--error' : ''}`}/>
         <span className="form-profile__spanError">{errors?.name &&<p className="form-profile__textError">{errors?.name?.message || "Что-то пошло не так..."}</p>}</span>
         
         </label>
@@ -85,12 +85,12 @@ function Profile({ signOut, isLogin, setCurrentUser }) {
          onChange={handleSetEmail}
          type="email"
         placeholder="email"
-         className="form-profile__input"
+         className={`form-profile__input ${errors.email ? 'form-profile__input--error' : ''}`}
         />
         <span className="form-profile__spanError">{errors?.email &&<p className="form-profile__textError">{errors?.email?.message || "Что-то пошло не так..."}</p>}</span>
         </label>
       </div>
-      <button type="submit" className={`form-profile__button ${isValid? "" : "form-profile__button_disabled"}`}>
+      <button type="submit" disabled={!isValid} className={`form-profile__button ${isValid? "" : "form-profile__button_disabled"}`}>
       Редактировать
       </button>
     </form>

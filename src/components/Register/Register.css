@@ -66,6 +66,9 @@
 .form-register__input:focus {
   box-shadow: 0 0 3px 3px #d9d9d9;
 }
+.form-register__input--error {
+  border: 1px solid #EE3465;
+}
 .form-register__spanError {
   font-family: 'Inter';
 font-style: normal;
