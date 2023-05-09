@@ -15,6 +15,7 @@ function Register(props) {
     errors, isValid
   },
     handleSubmit,
+    
     restet
 
 } = useForm({mode: 'onBlur'})
@@ -24,6 +25,7 @@ const onSubmit = (data) => {
 }
   function handleSetName(e) {
     setIsName(e.target.value);
+   
   }
 
   function handleSetEmail(e) {

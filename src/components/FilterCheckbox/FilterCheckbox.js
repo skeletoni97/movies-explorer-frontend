@@ -15,7 +15,7 @@ function FilterCheckbox({ label, isChecked, onChange }) {
           checked={isChecked}
           onChange={handleCheckboxChange}
         />
-        <div class="checkbox__checkmark"></div>
+        <div className="checkbox__checkmark"></div>
         <span className="checkbox__body">{label}</span>
       </label>
     </div>

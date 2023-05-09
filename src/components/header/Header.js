@@ -5,7 +5,9 @@ import Logo from "../Logo/Logo";
 import ProfileLink from "../ProfileLink/ProfileLink";
 import Navigation from "../Navigation/Navigation";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useLocation } from "react-router-dom";
 function Header({ isLogin }) {
+  const location = useLocation().pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   console.log(isLogin);
@@ -18,16 +20,17 @@ function Header({ isLogin }) {
   // function handleButtonLogo() {
 
   // }
+  console.log(location)
   return (
     <header className="header">
       <div className="header__blocks">
         <div className="header__block-navigation">
           <Logo></Logo>
-          {isLogin ? <Navigation /> : <></>}
+          {location === "/saved-movies" || location === "/movies" ? <Navigation /> : <></>}
         </div>
 
         <div className="header__block">
-          {isLogin ? (
+          {location === "/saved-movies" || location === "/movies" ? (
             <>
               <div className="header__profileLink">
                 <ProfileLink></ProfileLink>
