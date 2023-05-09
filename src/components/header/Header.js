@@ -26,11 +26,11 @@ function Header({ isLogin }) {
       <div className="header__blocks">
         <div className="header__block-navigation">
           <Logo></Logo>
-          {location === "/saved-movies" || location === "/movies" ? <Navigation /> : <></>}
+          {location === "/saved-movies" || location === "/movies" || location === "/profile" ? <Navigation /> : <></>}
         </div>
 
         <div className="header__block">
-          {location === "/saved-movies" || location === "/movies" ? (
+          {location === "/saved-movies" || location === "/movies" || location === "/profile" ? (
             <>
               <div className="header__profileLink">
                 <ProfileLink></ProfileLink>
