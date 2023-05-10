@@ -59,6 +59,11 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+}
+.burgerMenu__link-items:hover {
+ opacity: 0.6;
 }
 .burgerMenu__link {
   text-decoration: none;
