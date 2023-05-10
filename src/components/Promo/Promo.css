@@ -1,0 +1,133 @@
+.promo {
+    background-color: #dddee3;
+    padding-top: 75px;
+  
+  }
+  .promo__container {
+    margin: 74px auto;
+    width: calc(100% - 60px);
+    max-width: 1140px;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__container {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  }
+  @media screen and (max-width: 560px) {
+    .promo__container {
+      margin: 5px auto;
+      width: calc(100% - 36px);
+    }
+  }
+  .promo__logo {
+    margin: 0;
+    width: 310px;
+    height: 304px;
+    
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__logo {
+      margin: 65px 0 49px;
+    }
+  }
+  @media screen and (max-width: 560px) {
+    .promo__logo {
+      width: 210px;
+    height: 206px;
+    margin: 65px 0 44px;
+    }
+  }
+  .promo__info {
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__info {
+      text-align: center;
+    }
+  }
+  .promo__title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__title {
+      margin: 0 auto 0;
+      font-size: 40px;
+      line-height: 50px;
+    }
+  }
+  @media screen and (max-width: 560px) {
+    .promo__title {
+      font-size: 30px;
+      line-height: 38px;
+      letter-spacing: -0.04em;
+    }
+  }
+  .promo__subtitle {
+    padding: 0;
+    margin: 36px 0 0;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    max-width: 320px;
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__subtitle {
+      margin: 20px auto 0;
+      max-width: 250px;
+    }
+  }
+  @media screen and (max-width: 560px) {
+    .promo__subtitle {
+      margin: 24px auto 0;
+    }
+  }
+ 
+  .promo__link {
+    margin: 146px 0 75px;
+    padding: 9px 0;
+    width: 127px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    border: 1px solid hsla(0, 0%, 0%, 0.6);
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    padding: 9px 0;
+    text-align: center;
+    transition: opacity 0.3s linear;
+  }
+  .promo__link:hover  {
+    opacity: 0.6;
+  }
+  @media screen and (max-width: 1020px) {
+    .promo__link {
+      margin: 92px auto 75px;
+    }
+  }    
+  @media screen and (max-width: 560px) {
+    .promo__link {
+      margin: 80px auto 30px;
+    }
+  }
+
+ 
+
+  

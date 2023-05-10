@@ -1,0 +1,159 @@
+.aboutProject {
+  display: block;
+  margin: auto;
+  max-width: 1140px;
+  width: calc(100% - 102px);
+  margin-top: 111px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject {
+    margin-top: 92px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutProject {
+    width: calc(100% - 36px);
+    margin-top: 71px;
+  }
+}
+.aboutProject__title {
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 26.5px;
+  }
+}
+.aboutProject__blocks {
+  display: flex;
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__blocks {
+    flex-direction: column;
+  }
+}
+.aboutProject__block {
+  padding-right: 52px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject__block {
+    padding-right: 41px;
+  }
+}
+.aboutProject__block-right {
+  padding-left: 52px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject__block-right {
+    padding-left: 40px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__block-right {
+    padding-left: 0px;
+  }
+}
+
+.aboutProject__subtitle {
+  margin: 70px 0 26px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject__subtitle {
+    margin: 70px 0 22px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__subtitle {
+    margin: 61px 0 14px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+.aboutProject__text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 110px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject__text {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 92px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__text {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 -3px;
+  }
+}
+
+.aboutProject__worck {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  padding: 9.5px 0;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 560px) {
+  .aboutProject__worck {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+.aboutProject__worck-back-end-time {
+  background-color: #f2f2f2;
+  max-width: 912px;
+}
+.aboutProject__worck-front-end-time {
+  background-color: #3456f3;
+  color: #ffff;
+  max-width: 228px;
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__worck-front-end-time {
+    max-width: 100px;
+  }
+}
+.aboutProject__worcks {
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  grid-gap: 4px 0px;
+  padding-bottom: 100px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutProject__worcks {
+    padding-bottom: 81px;
+    grid-template-columns: 140px 1fr;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutProject__worcks {
+    margin: 65px 0 0;
+    grid-template-columns: 100px 1fr;
+  }
+}

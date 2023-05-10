@@ -1,0 +1,185 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 30px;
+  /* height: 74px; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+ 
+  z-index: 1;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1020px) {
+  .header {
+    padding: 16px 30px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .header {
+    padding: 18px 14px;
+  }
+}
+.header__navAut {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+.header__navAut-link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: black;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+}
+@media screen and (max-width: 560px) {
+  .header__navAut-link {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
+.header__navAut-link:hover {
+  opacity: 0.6;
+}
+.header__navAut-link_signin {
+  color: #000;
+  background-color: #3456f3;
+  padding: 8px 20px;
+  margin-left: 32px;
+  border-radius: 3px;
+  color: #ffffff;
+}
+@media screen and (max-width: 560px) {
+  .header__navAut-link_signin {
+    margin-left: 14px;
+    padding: 7px 12px;
+  }
+}
+
+.header__blocks {
+  display: flex;
+  max-width: 1140px;
+  width: 100%;
+  justify-content: space-between;
+}
+.header__block-navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 294px;
+}
+.header__block {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__profileLink {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  height: 100%;
+}
+@media screen and (max-width: 1020px) {
+  .header__profileLink {
+    display: none;
+  }
+}
+.header__navAut Li {
+  list-style-type: none;
+}
+
+.menu-btn {
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+.menu-btn:hover {
+ opacity: 0.6;
+}
+.menu-btn:active {
+  position: fixed;
+  right: 20px;
+}
+
+@media screen and (min-width: 1020px) {
+  .menu-btn {
+    display: none;
+    width: 100px;
+  }
+}
+
+.menu-btn span {
+  width: 28px;
+  height: 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222222;
+  transition: all 0.5s;
+}
+@media screen and (max-width: 560px) {
+  .menu-btn span {
+    width: 22px;
+    height: 2.5px;
+    top: 26%;
+    left: 54%;
+  }
+}
+.menu-btn span:nth-of-type(2) {
+  top: calc(50% - 10px);
+}
+@media screen and (max-width: 560px) {
+  .menu-btn span:nth-of-type(2) {
+    top: calc(50% - 2px);
+  }
+}
+.menu-btn span:nth-of-type(3) {
+  top: calc(50% + 10px);
+}
+@media screen and (max-width: 560px) {
+  .menu-btn span:nth-of-type(3) {
+    top: calc(50% + 7px);
+  }
+}
+/* Меняем гамбургер иконку, когда меню открыто */
+.menu-btn.active span:nth-of-type(1) {
+  display: none;
+}
+.menu-btn.active span:nth-of-type(2) {
+  left: calc(50% - -13px);
+  transform: translate(-50%, 0%) rotate(45deg);
+  top: calc(50% - 1px);
+  width: 22px;
+}
+@media screen and (max-width: 560px) {
+  .menu-btn.active span:nth-of-type(2) {
+    top: calc(50% - 10px);
+  }
+}
+.menu-btn.active span:nth-of-type(3) {
+  top: calc(50% + -1px);
+  left: calc(50% + 13px);
+  transform: translate(-50%, 0%) rotate(-45deg);
+  width: 22px;
+}
+@media screen and (max-width: 560px) {
+  .menu-btn.active span:nth-of-type(3) {
+    top: calc(50% + -10px);
+  }
+}

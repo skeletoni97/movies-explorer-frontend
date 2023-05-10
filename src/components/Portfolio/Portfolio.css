@@ -1,0 +1,119 @@
+.portfolio {
+  display: block;
+  max-width: 1140px;
+  width: calc(100% - 60px);
+  margin: 100px auto 186px;
+}
+
+@media screen and (max-width: 1020px) {
+  .portfolio {
+    width: calc(100% - 100px);
+    margin: 92px auto 152px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .portfolio {
+    width: calc(100% - 28px);
+    margin: 70px auto 130px;
+  }
+}
+.portfolio__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #a0a0a0;
+  margin: 0;
+  padding-bottom: 22px;
+
+  letter-spacing: 0em;
+}
+@media screen and (max-width: 560px) {
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.portfolio__button-text {
+  text-align: start;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 1020px) {
+  .portfolio__button-text {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .portfolio__button-text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.portfolio__button-arrow {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 560px) {
+  .portfolio__button-arrow {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.portfolio__button:first-of-type {
+  margin: 27px 0 21px;
+  padding: 0px 0 9px;
+}
+@media screen and (max-width: 560px) {
+  .portfolio__button:first-of-type {
+    margin: 17px 0 30px;
+  }
+}
+.portfolio__button:last-of-type {
+  border: none;
+}
+@media screen and (max-width: 560px) {
+  .portfolio__button-arrow {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+.portfolio__button {
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 0 9px;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  border-bottom: 1px solid #e8e8e8;
+  color: #000000;
+  text-decoration: none;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+.portfolio__button:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 560px) {
+  .portfolio__button {
+    margin-bottom: 21px;
+    padding: 0 0 18px;
+  }
+}

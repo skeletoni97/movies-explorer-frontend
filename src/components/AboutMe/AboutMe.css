@@ -1,0 +1,161 @@
+.aboutMe {
+  display: block;
+  max-width: 1140px;
+  width: calc(100% - 60px);
+  margin: 115px auto 0;
+}
+
+@media screen and (max-width: 1020px) {
+  .aboutMe {
+    width: calc(100% - 100px);
+    margin: 91px auto 0;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutMe {
+    width: calc(100% - 28px);
+    margin: 52px auto 0;
+  }
+}
+.aboutMe__blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 25px 0 0;
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__blocks {
+    flex-direction: column-reverse;
+  }
+}
+.aboutMe__foto {
+  margin-top: 41px;
+  background: no-repeat;
+  background-size: cover;
+  width: 270px;
+  height: 328px;
+  border-radius: 10px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutMe__foto {
+    margin: 41px 0 0;
+    width: 255px;
+    height: 307px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__foto {
+    margin: 36px 0 0;
+    width: 292px;
+    height: 351px;
+  }
+}
+
+.aboutMe__github {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+}
+.aboutMe__github:hover {
+  opacity: 0.6;
+}
+
+.aboutMe__job {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutMe__job {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__job {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+.aboutMe__name {
+  margin: 42px 0 19px;
+  padding: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  /* identical to box height, or 116% */
+
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 1020px) {
+  .aboutMe__name {
+    margin: 42px 0 16px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin: 40px 0 20px;
+  }
+}
+
+.aboutMe__text {
+  margin: 25px 0 98px;
+  padding: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  max-width: 598px;
+}
+@media screen and (max-width: 1020px) {
+  .aboutMe__text {
+    margin: 20px 0 87px;
+    max-width: 364px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__text {
+    margin: 20px 0 40px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.aboutMe__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  letter-spacing: -0.04em;
+}
+@media screen and (max-width: 560px) {
+  .aboutMe__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 26.5px;
+  }
+}

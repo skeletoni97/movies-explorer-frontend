@@ -1,0 +1,77 @@
+.movies {
+  width: calc(100% - 60px);
+  max-width: 1140px;
+  margin: auto;
+  padding-top: 74px;
+  margin-bottom: 112px;
+}
+
+@media screen and (max-width: 1020px) {
+  .movies {
+    margin-bottom: 78px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies {
+    width: calc(100% - 20px);
+    margin-bottom: 126px;
+  }
+}
+.movies-card-list {
+  max-width: 100%;
+  margin: 131px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 360px));
+  grid-template-rows: auto;
+  gap: 43px 30px;
+  justify-content: center;
+}
+@media screen and (max-width: 1020px) {
+  .movies-card-list {
+    grid-template-columns: repeat(2, minmax(100px, 339px));
+    margin: 80px auto 0;
+    gap: 31px 30px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .movies-card-list {
+    grid-template-columns: repeat(1, minmax(100px, 330px));
+    margin: 50px auto 0;
+    gap: 22px 30px;
+  }
+}
+.show-more {
+  width: 100%;
+  height: 128px;
+  display: flex;
+  position: relative;
+  margin-top: -33px;
+  background: rgb(255, 255, 255);
+}
+@media screen and (max-width: 1020px) {
+  .show-more {
+    height: 197px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .show-more {
+    height: 100px;
+    margin-top: 17px;
+  }
+}
+.show-more__button {
+  width: 100%;
+  padding: 10.5px;
+  margin: auto;
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+.show-more__button:hover {
+  opacity: 0.6;
+}

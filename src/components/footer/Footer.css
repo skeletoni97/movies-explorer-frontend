@@ -1,0 +1,110 @@
+.footer {
+  margin: 0 auto 0;
+  max-width: 1140px;
+  width: calc(100% - 60px);
+}
+@media screen and (max-width: 1020px) {
+  .footer {
+    font-size: 28px;
+    margin: 0 auto 0;
+  }
+}
+@media screen and (max-width: 560px) {
+  .footer {
+    width: calc(100% - 20px);
+  }
+}
+.footer__text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  margin: 0 0 6px;
+  padding: 0 0 20px;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+  color: #a0a0a0;
+}
+@media screen and (max-width: 560px) {
+  .footer__text {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 0 30px;
+  }
+}
+.footer__nav {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.footer__list {
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 1020px) {
+  .footer__list {
+    font-size: 28px;
+  }
+}
+.footer__list-item {
+  display: inline-block;
+  margin-left: 21px;
+}
+@media screen and (max-width: 560px) {
+  .footer__list-item {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+}
+.footer__link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 560px) {
+  .footer__link {
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+.footer__link:hover {
+  text-decoration: underline;
+}
+.footer__copyright {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+@media screen and (max-width: 560px) {
+  .footer__copyright {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0;
+  }
+}
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+@media screen and (max-width: 560px) {
+  .footer__container {
+    flex-direction: column-reverse;
+    gap: 18px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
