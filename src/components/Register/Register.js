@@ -5,41 +5,24 @@ import Logo from "../Logo/Logo";
 import "./Register.css";
 
 function Register(props) {
-  // const [name, setIsName] = useState("");
-  const [email, setIsEmail] = useState("");
-  const [password, setIsPassword] = useState("");
-  const [name, setIsName] = useState("");
+
   const {
     register,
   formState: {
     errors, isValid
   },
     handleSubmit,
-    
+  
     restet
 
-} = useForm({mode: 'onBlur'})
+} = useForm({mode: "onChange"})
 const onSubmit = (data) => {
-  alert(JSON.stringify(data));
+
+    props.handleRegistr(data);
   restet();
 }
-  function handleSetName(e) {
-    setIsName(e.target.value);
-   
-  }
 
-  function handleSetEmail(e) {
-    setIsEmail(e.target.value);
-  }
-
-  function handleSetPassword(e) {
-    setIsPassword(e.target.value);
-  }
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   props.handleRegistr(email, password);
-  // }
+  
   return (
     <section className="register">
       <Logo></Logo>
@@ -49,7 +32,6 @@ const onSubmit = (data) => {
           Имя
           <input
             placeholder="Имя"
-            onChange={handleSetName}
             type="name"
             {...register('name',{
               required: "Поле обязательно к заполнению.",
@@ -76,7 +58,6 @@ const onSubmit = (data) => {
                 message: "Введите корректный email",
               },
             })}
-            onChange={handleSetEmail}
             placeholder="email"
             className={`form-register__input ${errors.email ? 'form-ligin__input--error' : ''}`}
           />
@@ -97,7 +78,6 @@ const onSubmit = (data) => {
                 message: "Максимум 32 символа."
               }
             })}
-            onChange={handleSetPassword}
             placeholder="Password"
             type="Password"
             className={`form-register__input ${errors.password ? 'form-ligin__input--error' : ''}`}

@@ -4,9 +4,7 @@ import { useForm } from "react-hook-form";
 import Logo from "../Logo/Logo";
 import "./Login.css";
 function Login(props) {
-  // const [name, setIsName] = useState("");
-  const [email, setIsEmail] = useState("");
-  const [password, setIsPassword] = useState("");
+
   const {
     register,
   formState: {
@@ -15,27 +13,14 @@ function Login(props) {
     handleSubmit,
     reset
 
-} = useForm({mode: 'onBlur'})
+} = useForm({mode: "onChange"})
 const onSubmit = (data) => {
   
-   props.onSignin(email, password);
+   props.onSignin(data);
   // alert(JSON.stringify(data));
   reset();
 }
 
-  // function handleSetEmail(e) {
-  //   setIsEmail(e.target.value);
-  // }
-
-  // function handleSetPassword(e) {
-  //   setIsPassword(e.target.value);
-  // }
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   props.onSignin(email, password);
-  // }
-console.log(isValid)
   return (
     <section className="login">
       <Logo></Logo>

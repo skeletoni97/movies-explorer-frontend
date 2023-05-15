@@ -21,6 +21,7 @@
   max-height: 201px;
   object-fit: cover;
   width: 100%;
+  min-height: 196px;
 }
 @media screen and (max-width: 1020px) {
   .movies-card__image {

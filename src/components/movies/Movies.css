@@ -75,3 +75,11 @@
 .show-more__button:hover {
   opacity: 0.6;
 }
+.movies__error {
+  text-align: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 140px;
+}

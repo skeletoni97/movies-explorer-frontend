@@ -10,9 +10,9 @@ function Header({ isLogin }) {
   const location = useLocation().pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log(isLogin);
+
   function handleButtonSignin() {
-    console.log("cc");
+  
   }
   function handleButtonBurgerMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -20,17 +20,17 @@ function Header({ isLogin }) {
   // function handleButtonLogo() {
 
   // }
-  console.log(location)
+  
   return (
     <header className="header">
       <div className="header__blocks">
         <div className="header__block-navigation">
           <Logo></Logo>
-          {location === "/saved-movies" || location === "/movies" || location === "/profile" ? <Navigation /> : <></>}
+          {isLogin ? <Navigation /> : <></>}
         </div>
 
         <div className="header__block">
-          {location === "/saved-movies" || location === "/movies" || location === "/profile" ? (
+          {isLogin ? (
             <>
               <div className="header__profileLink">
                 <ProfileLink></ProfileLink>

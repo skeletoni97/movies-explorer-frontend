@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect  } from "react";
 import './Profile.css';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Header from '../header/Header'
+import { CurrentUserContext } from '../../context/CurrentContext';
 
-function Profile({ signOut, isLogin, setCurrentUser }) {
-    const [name, setIsName] = useState("Виталий");
-    const [email, setIsEmail] = useState("gogo@go.com");
+function Profile({ signOut, isLogin, setCurrentUser, handleUpdateUser }) {
+
+    const user = useContext(CurrentUserContext);
+    const [title, setIsTitle] = useState('');
+    const [name, setIsName] = useState(user.name);
+    const [email, setIsEmail] = useState(user.email);
+
+
+    useEffect(() => {
+      setIsName(user.name);
+      setIsEmail(user.email);
+      setIsTitle(user.name);
+    }, [user]);
+
     const {
       register,
     formState: {
       errors, isValid
     },
       handleSubmit,
-      restet
-  
-  } = useForm({mode: 'onBlur'})
+  } = useForm({mode: "onChange"})
+
   const onSubmit = (data) => {
+    handleUpdateUser(data)
     alert(JSON.stringify(data));
-    restet();
+    
   }
   
-    function handleSetEmail(e) {
-      setIsEmail(e.target.value);
-    }
-  
-    function handleSetName(e) {
-        setIsName(e.target.value);
-    }
-  
-    // function handleSubmit(e) {
-    //   e.preventDefault();
-    //   // handleRegistr(email, name);
-    // }
+   
   return (
     <>
     <Header isLogin={isLogin} />
+   
     <main className="main">
     <section className="profile">
-    <h2 className="profile__title">Привет, Виталий!</h2>
-    <form className="form-profile" onSubmit={handleSubmit}>
+    <h2 className="profile__title">Привет, {title}!</h2>
+    <form className="form-profile" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-profile__container">
         <p className="form-profile__text">Имя</p>
         <label>
         <input
-        value={name || ""}
+       defaultValue={name || ""}
        
         {...register('name',{
           required: "Поле обязательно к заполнению.",
@@ -57,7 +59,7 @@ function Profile({ signOut, isLogin, setCurrentUser }) {
             message: "Максимум 32 символа."
           }
         })}
-        onChange={handleSetName}
+       
         type="name"
         placeholder="Имя"
         className={`form-profile__input ${errors.name ? 'form-profile__input--error' : ''}`}/>
@@ -69,8 +71,8 @@ function Profile({ signOut, isLogin, setCurrentUser }) {
         <p className="form-profile__text">E-mail</p>
         <label>
         <input
-          value={email || ""}
-         
+      
+          defaultValue={email || ""}
           {...register('email',{
             required: "Поле обязательно к заполнению.",
             pattern: {
@@ -82,7 +84,7 @@ function Profile({ signOut, isLogin, setCurrentUser }) {
               message: "Минимум 2 символа."
             }
           })}
-         onChange={handleSetEmail}
+         
          type="email"
         placeholder="email"
          className={`form-profile__input ${errors.email ? 'form-profile__input--error' : ''}`}

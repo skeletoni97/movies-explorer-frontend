@@ -1,58 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Preloader from '../Preloader/Preloader';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-function SavedMovies({isLogin}) {
-  
-  const [isLoading, setIsLoading] = useState(false);
+function SavedMovies({isLogin, deleteMovie, myMovies, isLoading}) {
+  const [search, setSearch] = useState('');
   const [isError, setIsError] = useState(false);
   const [isShortFilmsOnly, setIsShortFilmsOnly] = useState(false);
-  const [visibleCardsCount, setVisibleCardsCount] = useState(3);
+  const [visibleCardsCount, setVisibleCardsCount] = useState(2);
+  const [savedDataLoaded, setSavedDataLoaded] = useState(false);
+  console.log(savedDataLoaded)
+  useEffect(() => {
+    // Function to retrieve saved data from local storage
+    const getSavedData = () => {
+      const savedData = localStorage.getItem('saveMoviesData');
+      if (savedData) {
+        const { searchQuery, shortFilmsOnly } = JSON.parse(savedData);
 
-  const handleSearch = (searchQuery) => {
-    setIsLoading(true);
+        setSearch(searchQuery);
+        setIsShortFilmsOnly(shortFilmsOnly);
+      }
+
+      setSavedDataLoaded(true);
+    };
+
+    getSavedData();
+  }, []);
+
+  useEffect(() => {
+    // Function to save data to local storage
+    const saveData = () => {
+      const data = {
+        searchQuery: search,
+        shortFilmsOnly: isShortFilmsOnly,
+      };
+
+      localStorage.setItem('saveMoviesData', JSON.stringify(data));
+    };
+
+    if (savedDataLoaded) {
+      saveData();
+    }
+  }, [search, isShortFilmsOnly, savedDataLoaded]);
+  useEffect(() => {
+    function updateVisibleCardsCount() {
+      const screenWidth = window.innerWidth;
+      let newVisibleCardsCount;
+
+      if (screenWidth < 560) {
+        newVisibleCardsCount = 5;
+      } else if (screenWidth < 1020) {
+        newVisibleCardsCount = 8;
+      } else {
+        newVisibleCardsCount = 12;
+      }
+      setVisibleCardsCount(newVisibleCardsCount);
+    }
+
+    window.addEventListener("resize", updateVisibleCardsCount);
+    updateVisibleCardsCount();
+
+    return () => {
+      window.removeEventListener("resize", updateVisibleCardsCount);
+    };
+  }, []);
+
+  function handleSearch(searchQuery) {
+    if (!searchQuery) { // проверка на пустое значение
+      setIsError(true);
+      return;
+    }
     setIsError(false);
-
-    // Здесь должен быть запрос к API для поиска фильмов по searchQuery
-    // и установка результатов в состояние movies
-
-    setIsLoading(false);
+    setSearch(searchQuery)
   };
 
   const handleFilterCheckboxChange = () => {
     setIsShortFilmsOnly(!isShortFilmsOnly);
   };
 
-
-  const movies = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-      time: "222"
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-   
-  ];
-
-
   const handleShowMoreButtonClick = () => {
-    setVisibleCardsCount(visibleCardsCount + 6); // показываем еще по 6 карточек
+    let increment = 3; 
+  
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1020) {
+      increment = 2;
+    }
+    setVisibleCardsCount((prevCount) => prevCount + increment);
   };
 
-  const isShowMoreButtonVisible = visibleCardsCount < movies.length; // кнопка "Показать больше" видна, если количество видимых карточек меньше общего количества карточек
+  const isShowMoreButtonVisible = visibleCardsCount < myMovies.length; // кнопка "Показать больше" видна, если количество видимых карточек меньше общего количества карточек
 
-  const visibleMovies = movies.slice(0, visibleCardsCount); // выбираем только видимые карточки
-
+  const visibleMovies = isShortFilmsOnly
+  ? myMovies.filter((movie) => movie.duration <= 40 && movie.nameRU.toLowerCase().includes(search.toLowerCase()))
+  : myMovies.filter((movie) => movie.nameRU.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <>
@@ -65,18 +107,20 @@ function SavedMovies({isLogin}) {
         onChange={handleFilterCheckboxChange}
       />
       {isLoading && <Preloader />}
-      {isError && <div className="movies__error">Ошибка загрузки данных</div>}
+      {isError && <div className="movies__error">Нужно ввести ключевое слово</div>}
       {!isLoading && !isError && (
       <div className="movies-card-list">
-        {visibleMovies.map((movie) => (
+        {visibleMovies.slice(0, visibleCardsCount).map((movie) => (
             <MoviesCard 
+            deleteMovie={deleteMovie}
               key={movie.id}
+              myMovies={myMovies}
               movie={movie} 
               isShortFilm={isShortFilmsOnly} />
           ))}
       </div>
       )}
-      {isShowMoreButtonVisible && (
+      {isShowMoreButtonVisible && visibleMovies.length >= 5 && !isError &&(
         <div className='show-more'>
         <button className="show-more__button" onClick={handleShowMoreButtonClick}>
           Еще

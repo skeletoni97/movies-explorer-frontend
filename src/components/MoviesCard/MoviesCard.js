@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 import CheckMark from "../../images/check-mark.svg";
 import Remove from "../../images/card-button-delete.svg";
+import {CurrentUserContext} from '../../context/CurrentContext';
 
-function MoviesCard({ movie, isShortFilm }) {
+function MoviesCard({ movie, isShortFilm, deleteMovie, addMovie, myMovies }) {
   const location = useLocation().pathname;
   const [saved, setSaved] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const user = useContext(CurrentUserContext);
 
   function handleMouseEnter() {
     setHovered(true);
@@ -17,7 +19,6 @@ function MoviesCard({ movie, isShortFilm }) {
     setHovered(false);
   }
 
-  console.log(saved);
   useEffect(() => {
     if (location === "/saved-movies") {
       setSaved(true);
@@ -25,8 +26,31 @@ function MoviesCard({ movie, isShortFilm }) {
   }, [location]);
 
   function handleSaveClick() {
+    if (location === "/saved-movies") {
+        deleteMovie(movie)
+        return
+      } 
+      
     setSaved(!saved);
+    if(!saved){
+      addMovie(movie, user)
+    } else {
+      const movies = myMovies.find((item) => item.movieId === movie.id || item.id === movie.id);
+      deleteMovie(movies)
+    }
   }
+  function getTimeFromMins(mins) {
+    let hours = Math.trunc(mins/60);
+    let minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
+};
+
+useEffect(() => {
+  if (location === '/movies') {
+    const saved = myMovies.find((item) => item.movieId === movie.id || item.id === movie.id);
+    setSaved(saved);
+  }
+}, []);
 
   return (
     <div className="movies-card">
@@ -63,11 +87,11 @@ function MoviesCard({ movie, isShortFilm }) {
           </button>
         )}
 
-        <img className="movies-card__image" alt="movie" src={movie.link} />
+        <img className="movies-card__image" alt="movie" src={location === "/movies" ? `https://api.nomoreparties.co/${movie.image.url}` : movie.image} />
       </div>
       <div className="movies-card__info">
-        <h2 className="movies-card__title">{movie.name}</h2>
-        <p className="movies-card__description">{movie.time}</p>
+        <h2 className="movies-card__title">{movie.nameRU}</h2>
+        <p className="movies-card__description">{getTimeFromMins(movie.duration)}</p>
       </div>
     </div>
   );
