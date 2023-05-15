@@ -2,9 +2,10 @@
 
 Ссылка на макет https://www.figma.com/file/uvZLgpDjkJAIz640IR6aAy/Diploma-(Copy)?node-id=932%3A2802&t=pzGwQjq9v7LV4plg-1
 
-Вот тут фронт: hhttps://skeletoni97.nomoredomains.monster/movies
+фронт: hhttps://skeletoni97.nomoredomains.monster/movies
+бэк: hhttps://api.skeletoni97.nomoredomains.monster/movies
 
-Вот тут бэк: hhttps://api.skeletoni97.nomoredomains.monster/movies
+пул реквест https://github.com/skeletoni97/movies-explorer-frontend/pull/2
 
 # Getting Started with Create React App
 
