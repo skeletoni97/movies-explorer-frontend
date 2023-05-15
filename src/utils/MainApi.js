@@ -3,6 +3,12 @@ class MainApi {
       this._headers = headers;
       this._baseUrl = baseUrl;
     }
+
+    _getToken() {
+      return {
+        authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    }
   
     _getResponseData(res) {
       if (!res.ok) {
@@ -13,7 +19,7 @@ class MainApi {
   
     getProfile() {
       return fetch(`${this._baseUrl}/users/me`, {
-        headers: this._headers,
+        headers: {...this._headers, ...this._getToken()},
       })
         .then((res) => this._getResponseData(res))
     }
@@ -21,7 +27,7 @@ class MainApi {
     editProfile(data) {
       return fetch(`${this._baseUrl}/users/me`, {
         method: "PATCH",
-        headers: this._headers,
+        headers: {...this._headers, ...this._getToken()},
         body: JSON.stringify(data),
       })
         .then((res) => this._getResponseData(res))
@@ -29,7 +35,7 @@ class MainApi {
     getSaveMovie() {
       return fetch(`${this._baseUrl}/movies`, {
         method: "get",
-        headers: this._headers,
+        headers: {...this._headers, ...this._getToken()},
       })
         .then((res) => this._getResponseData(res))
     }

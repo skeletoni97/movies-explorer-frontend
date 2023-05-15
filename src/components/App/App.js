@@ -33,10 +33,8 @@ function App() {
   const navigate = useNavigate();
 
 
-  localStorage.setItem('movies', JSON.stringify(movies));
-  localStorage.setItem('myMovies', JSON.stringify(myMovies));
+  
   function addMovie (movie, user) {
-    console.log(movie)
     mainApi.
     addMovie(movie, user)
     .then((res) => {
@@ -48,7 +46,6 @@ function App() {
     });
   }
   function deleteMovie(movie) {
-  console.log()
     mainApi.
     deleteMovie(movie)
     .then((res) => {
@@ -91,21 +88,18 @@ function App() {
   function handleTokenCheck() {
     if (localStorage.getItem("token")) {
       const jwt = localStorage.getItem("token");
-      
+      console.log('jwt:', jwt)
       apiAuth
         .checkTokenUser(jwt)
         .then((res) => {
           if (res) {
- 
             setLogin(true);
-            
             return true;
           } else {
             navigate("/sign-in");
             setLogin(false);
           }
         })
-        
         .catch((err) => {
           console.log(err);
         });
@@ -143,27 +137,25 @@ function App() {
   useEffect(() => {
     if (!isLogin) return;
     setIsLoading(true)
-  console.log("res")
+    handleTokenCheck();
     Promise.all([mainApi.getProfile(), moviesApi.getMovies(), mainApi.getSaveMovie()])
-      .then(([res, items, SaveItems]) => {
+      .then(([res, items, SaveItems, jwt]) => {
         setcurrentUser(res);
-        console.log(res)
         setMovies(items)
         setMyMovies(SaveItems)
+        localStorage.setItem('movies', JSON.stringify(items));
+        localStorage.setItem('myMovies', JSON.stringify(SaveItems));
         setIsLoading(false)
       })
       .catch();
-    return () => {};
   }, [isLogin]);
 
   useEffect(() => {
-    console.log("retests")
     setIsLoading(true)
     handleTokenCheck();
     Promise.all([mainApi.getProfile(), moviesApi.getMovies(), mainApi.getSaveMovie()])
       .then(([res, items, SaveItems]) => {
         setcurrentUser(res);
-        
         setMovies(items)
         setMyMovies(SaveItems)
         setIsLoading(false)
@@ -171,7 +163,7 @@ function App() {
       .catch();
     return () => {};
   }, []);
-  
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>

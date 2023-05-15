@@ -99,9 +99,7 @@ function Movies({
   const visibleMovies = isShortFilmsOnly
   ? movies.filter((movie) => movie.duration <= 40 && movie.nameRU.toLowerCase().includes(search.toLowerCase()))
   : movies.filter((movie) => movie.nameRU.toLowerCase().includes(search.toLowerCase()));
-console.log(visibleCardsCount)
-console.log(visibleMovies)
-console.log(isError)
+
   return (
     <>
     <Header isLogin={isLogin}/>

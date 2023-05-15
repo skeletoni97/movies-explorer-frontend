@@ -11,7 +11,7 @@ function SavedMovies({isLogin, deleteMovie, myMovies, isLoading}) {
   const [isShortFilmsOnly, setIsShortFilmsOnly] = useState(false);
   const [visibleCardsCount, setVisibleCardsCount] = useState(2);
   const [savedDataLoaded, setSavedDataLoaded] = useState(false);
-  console.log(savedDataLoaded)
+
   useEffect(() => {
     // Function to retrieve saved data from local storage
     const getSavedData = () => {
