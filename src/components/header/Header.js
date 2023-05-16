@@ -5,22 +5,14 @@ import Logo from "../Logo/Logo";
 import ProfileLink from "../ProfileLink/ProfileLink";
 import Navigation from "../Navigation/Navigation";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useLocation } from "react-router-dom";
+
 function Header({ isLogin }) {
-  const location = useLocation().pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-  function handleButtonSignin() {
-  
-  }
   function handleButtonBurgerMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
-  // function handleButtonLogo() {
 
-  // }
-  
   return (
     <header className="header">
       <div className="header__blocks">
@@ -57,7 +49,6 @@ function Header({ isLogin }) {
               <li>
                 <Link
                   className="header__navAut-link header__navAut-link_signin"
-                  onClick={handleButtonSignin}
                   to="/sign-in"
                 >
                   Войти
