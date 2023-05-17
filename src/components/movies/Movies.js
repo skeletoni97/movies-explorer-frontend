@@ -122,7 +122,7 @@ function Movies({
           {isError && (
             <div className="movies__error">Нужно ввести ключевое слово.</div>
           )}
-          {!isLoading && !isError && visibleMovies.length === 0 && (
+          {!isLoading && !isError && (localStorage.getItem("movies") || visibleMovies.length) === 0 && (
             <div className="movies__error">Ничего не найдено.</div>
           )}
           {!isLoading && !isError && (
@@ -139,9 +139,7 @@ function Movies({
               ))}
             </div>
           )}
-          {isShowMoreButtonVisible &&
-            visibleMovies.length >= 12 &&
-            !isError && (
+          {!isLoading && isShowMoreButtonVisible && visibleMovies.length >= 12 && !isError && (
               <div className="show-more">
                 <button
                   className="show-more__button"
