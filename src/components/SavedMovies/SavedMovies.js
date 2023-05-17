@@ -10,36 +10,7 @@ function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
   const [isError, setIsError] = useState(false);
   const [isShortFilmsOnly, setIsShortFilmsOnly] = useState(false);
   const [visibleCardsCount, setVisibleCardsCount] = useState(2);
-  const [savedDataLoaded, setSavedDataLoaded] = useState(false);
-
-  useEffect(() => {
-    // Function to retrieve saved data from local storage
-    const getSavedData = () => {
-      const savedData = localStorage.getItem("saveMoviesData");
-      if (savedData) {
-        const { searchQuery, shortFilmsOnly } = JSON.parse(savedData);
-        setSearch(searchQuery);
-        setIsShortFilmsOnly(shortFilmsOnly);
-      }
-      setSavedDataLoaded(true);
-    };
-
-    getSavedData();
-  }, []);
-
-  useEffect(() => {
-    const saveData = () => {
-      const data = {
-        searchQuery: search,
-        shortFilmsOnly: isShortFilmsOnly,
-      };
-      localStorage.setItem("saveMoviesData", JSON.stringify(data));
-    };
-    if (savedDataLoaded) {
-      saveData();
-    }
-  }, [search, isShortFilmsOnly, savedDataLoaded]);
-
+  
   useEffect(() => {
     function updateVisibleCardsCount() {
       const screenWidth = window.innerWidth;

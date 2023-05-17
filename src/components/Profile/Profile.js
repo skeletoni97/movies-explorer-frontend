@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import Header from "../header/Header";
 import { CurrentUserContext } from "../../context/CurrentContext";
 
-function Profile({ signOut, isLogin, setCurrentUser, handleUpdateUser }) {
+function Profile({ signOut, isLogin, isLoadingForm, handleUpdateUser }) {
   const user = useContext(CurrentUserContext);
   const [title, setIsTitle] = useState("");
   const [name, setIsName] = useState(user.name);
   const [email, setIsEmail] = useState(user.email);
-
+  
   useEffect(() => {
     setIsName(user.name);
     setIsEmail(user.email);
@@ -19,7 +19,7 @@ function Profile({ signOut, isLogin, setCurrentUser, handleUpdateUser }) {
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, dirtyFields },
     handleSubmit,
   } = useForm({ mode: "onChange" });
 
@@ -103,7 +103,7 @@ function Profile({ signOut, isLogin, setCurrentUser, handleUpdateUser }) {
             </div>
             <button
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || !Object.keys(dirtyFields).length > 0 || isLoadingForm}
               className={`form-profile__button ${
                 isValid ? "" : "form-profile__button_disabled"
               }`}

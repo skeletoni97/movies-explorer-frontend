@@ -13,8 +13,7 @@ function Login(props) {
   } = useForm({ mode: "onChange" });
   
   const onSubmit = (data) => {
-    props.onSignin(data);
-    reset();
+    props.onSignin(data, reset);
   };
 
   return (
@@ -81,7 +80,7 @@ function Login(props) {
         </label>
         <button
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid || props.isLoadingForm}
           className={`form-ligin__button ${
             isValid ? "" : "form-ligin__button_disabled"
           }`}

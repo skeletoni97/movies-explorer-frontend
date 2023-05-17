@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SearchForm.css'
 import buttonImg from '../../images/search-form-lupa.svg'
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, search }) {
   const [searchQuery, setSearchQuery] = useState('');
  
+  useEffect(() => {
+    setSearchQuery(search);
+  }, [search]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     onSearch(searchQuery);
@@ -16,10 +20,11 @@ function SearchForm({ onSearch }) {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <input
+       
         className="search-form__input"
         type="text"
         placeholder="Фильм"
-        value={searchQuery}
+        value={searchQuery || ""}
         onChange={handleChange}
       />
       <button className="search-form__button" type="submit">

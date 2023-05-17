@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Logo from "../Logo/Logo";
@@ -9,12 +8,10 @@ function Register(props) {
     register,
     formState: { errors, isValid },
     handleSubmit,
-
-    restet,
+    reset,
   } = useForm({ mode: "onChange" });
   const onSubmit = (data) => {
-    props.handleRegistr(data);
-    restet();
+    props.handleRegistr(data, reset);
   };
 
   return (
@@ -108,7 +105,7 @@ function Register(props) {
         </label>
         <button
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid || props.isLoadingForm}
           className={`form-register__button ${
             isValid ? "" : "form-register__button_disabled"
           }`}

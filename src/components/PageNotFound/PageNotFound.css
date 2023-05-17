@@ -46,9 +46,15 @@
   color: #3456f3;
   font-family: "Inter";
   font-style: normal;
+  cursor: pointer;
+  border: none;
+  background: none;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-decoration: none;
   padding: 0;
+}
+.button_type_to-main:hover {
+  opacity: 0.6;
 }

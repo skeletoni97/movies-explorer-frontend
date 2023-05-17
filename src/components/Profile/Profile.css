@@ -47,6 +47,7 @@
 }
 .form-profile__button_disabled {
   opacity: 0.6;
+  cursor: default;
 }
 @media screen and (max-width: 1020px) {
   .form-profile__button {

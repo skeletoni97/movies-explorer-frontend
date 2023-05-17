@@ -64,7 +64,7 @@ function MoviesCard({ movie, deleteMovie, addMovie, myMovies }) {
         onMouseLeave={handleMouseLeave}
       >
         {location === "/saved-movies" ? (
-          <button
+          <button 
             className={`movies-card__button ${
               saved || hovered ? "" : "movies-card__button_hidden"
             }`}
@@ -90,7 +90,7 @@ function MoviesCard({ movie, deleteMovie, addMovie, myMovies }) {
             )}
           </button>
         )}
-
+        <a href={`${movie.trailerLink}`} target="blank" rel="noopener noreferrer"> 
         <img
           className="movies-card__image"
           alt="movie"
@@ -100,6 +100,7 @@ function MoviesCard({ movie, deleteMovie, addMovie, myMovies }) {
               : movie.image
           }
         />
+        </a>
       </div>
       <div className="movies-card__info">
         <h2 className="movies-card__title">{movie.nameRU}</h2>

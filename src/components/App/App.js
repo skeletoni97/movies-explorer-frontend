@@ -17,13 +17,18 @@ import Profile from "../Profile/Profile";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import InfoToolTip from "../InfoToolTip/InfoToolTip";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRouteUser from "../ProtectedRouteUser/ProtectedRouteUser";
 import {
   CurrentUserContext,
 } from "../../context/CurrentContext";
 
 function App() {
+  const [isLoadingForm, setIsLoadingForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(localStorage.getItem('movies')
+  ? JSON.parse(localStorage.getItem('movies'))
+  : []
+  );
   const [myMovies, setMyMovies] = useState([]);
   const [currentUser, setcurrentUser] = useState([]);
   const [isLogin, setLogin] = useState(false);
@@ -62,7 +67,8 @@ function App() {
       });
   }
 
-  function handleAutorizUser(date) {
+  function handleAutorizUser(date, reset) {
+    setIsLoadingForm(true);
     apiAuth
       .authorization(date.email, date.password)
       .then((res) => {
@@ -70,23 +76,31 @@ function App() {
         localStorage.setItem("isLogin", true);
         navigate("/movies");
         setLogin(true);
+        reset();
       })
       .catch((err) => {
         setIsFail(true);
         setErrText("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(() => {
+        setIsLoadingForm(false)
       });
   }
 
-  function handleRegistr(data) {
+  function handleRegistr(data, reset) {
+    setIsLoadingForm(true);
     apiAuth
       .postUser(data.name, data.email, data.password)
       .then((res) => {
         navigate("/movies");
-        handleAutorizUser(data);
+        handleAutorizUser(data, reset);
       })
       .catch((err) => {
         setIsFail(true);
         setErrText("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(() => {
+        setIsLoadingForm(false)
       });
   }
 
@@ -111,6 +125,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    setIsLoadingForm(true);
     mainApi
       .editProfile(data)
       .then((res) => {
@@ -121,6 +136,9 @@ function App() {
         setIsFail(true);
         console.log(err);
         setErrText("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(() => {
+        setIsLoadingForm(false)
       });
   }
 
@@ -144,16 +162,14 @@ function App() {
   useEffect(() => {
     if (!isLogin) return;
     setIsLoading(true);
+    console.log('качаем кини')
     Promise.all([
       mainApi.getProfile(),
-      moviesApi.getMovies(),
       mainApi.getSaveMovie(),
     ])
-      .then(([res, items, SaveItems, jwt]) => {
+      .then(([res, SaveItems, jwt]) => {
         setcurrentUser(res);
-        setMovies(items);
         setMyMovies(SaveItems);
-        localStorage.setItem("movies", JSON.stringify(items));
         localStorage.setItem("myMovies", JSON.stringify(SaveItems));
         setIsLoading(false);
       })
@@ -168,27 +184,45 @@ function App() {
 
   useEffect(() => {
     if (!localStorage.getItem("isLogin")) return;
-    setIsLoading(true);
     handleTokenCheck();
+    setIsLoading(true);
     setLogin(true);
     Promise.all([
       mainApi.getProfile(),
-      moviesApi.getMovies(),
       mainApi.getSaveMovie(),
     ])
-      .then(([res, items, SaveItems]) => {
+      .then(([res, SaveItems]) => {
         setcurrentUser(res);
-        setMovies(items);
         setMyMovies(SaveItems);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setIsLoading(false);
         setIsFail(true);
       });
     navigate();
   }, []);
+
+  useEffect(() => {
+    if (movies.length === 0) {
+      setIsLoading(true);
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          setMovies(res);
+          localStorage.setItem("movies", JSON.stringify(res));
+        })
+        .catch((err) => {
+          setIsFail(true);
+          setErrText(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [movies]);
 
   return (
     <div className="page">
@@ -243,6 +277,7 @@ function App() {
                 <Profile
                   isLogin={isLogin}
                   signOut={signOut}
+                  isLoadingForm={isLoadingForm}
                   setcurrentUser={setcurrentUser}
                   handleUpdateUser={handleUpdateUser}
                 ></Profile>
@@ -251,11 +286,18 @@ function App() {
           />
           <Route
             path="/sign-up"
-            element={<Register handleRegistr={handleRegistr} isFail={isFail} />}
+            element={
+            <ProtectedRouteUser isLogin={isLogin}>
+              <Register handleRegistr={handleRegistr} isFail={isFail} isLoadingForm={isLoadingForm} />
+            </ProtectedRouteUser>}
           />
+          
           <Route
             path="/sign-in"
-            element={<Login onSignin={handleAutorizUser} />}
+            element={
+              <ProtectedRouteUser isLogin={isLogin}>
+                <Login onSignin={handleAutorizUser} isLoadingForm={isLoadingForm}/>
+              </ProtectedRouteUser>}
           />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

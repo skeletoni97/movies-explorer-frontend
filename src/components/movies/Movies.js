@@ -5,6 +5,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+
 import "./Movies.css";
 
 function Movies({
@@ -102,7 +103,8 @@ function Movies({
           movie.nameRU.toLowerCase().includes(search.toLowerCase())
       )
     : movies.filter((movie) =>
-        movie.nameRU.toLowerCase().includes(search.toLowerCase())
+    
+       movie.nameRU.toLowerCase().includes(search.toLowerCase())
       );
 
   return (
@@ -110,7 +112,7 @@ function Movies({
       <Header isLogin={isLogin} />
       <main className="main">
         <section className="movies">
-          <SearchForm onSearch={handleSearch} />
+          <SearchForm onSearch={handleSearch} search={search}/>
           <FilterCheckbox
             label="Короткометражки"
             isChecked={isShortFilmsOnly}
@@ -118,7 +120,10 @@ function Movies({
           />
           {isLoading && <Preloader />}
           {isError && (
-            <div className="movies__error">Нужно ввести ключевое слово</div>
+            <div className="movies__error">Нужно ввести ключевое слово.</div>
+          )}
+          {!isLoading && !isError && visibleMovies.length === 0 && (
+            <div className="movies__error">Ничего не найдено.</div>
           )}
           {!isLoading && !isError && (
             <div className="movies-card-list">
