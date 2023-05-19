@@ -23,14 +23,106 @@ import { CurrentUserContext } from "../../context/CurrentContext";
 function App() {
   const [isLoadingForm, setIsLoadingForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
-  const [myMovies, setMyMovies] = useState([]);
+  const [movies, setMovies] = useState(localStorage.getItem('movies')
+  ? JSON.parse(localStorage.getItem('movies'))
+  : []);
+  const [myMovies, setMyMovies] = useState(localStorage.getItem('myMovies')
+  ? JSON.parse(localStorage.getItem('movies'))
+  : []);
   const [currentUser, setcurrentUser] = useState([]);
   const [isLogin, setLogin] = useState(false);
   const [isFail, setIsFail] = useState(false);
   const [errText, setErrText] = useState("");
   const [isSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLogin) return;
+    setIsLoading(true);
+    let requestsCount = 3;
+    if (!localStorage.getItem("movies")) {
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          localStorage.setItem("movies", JSON.stringify(res));
+          setMovies(res);
+        })
+        .catch((err) => {
+          setErrText(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
+          setIsFail(true);
+        })
+        .finally(() => {
+          requestsCount--;
+          if (requestsCount === 0) {
+            setIsLoading(false);
+          }
+        });
+    } else {
+      requestsCount--;
+      if (requestsCount === 0) {
+        setIsLoading(false);
+      }
+    }
+  
+    mainApi
+      .getProfile()
+      .then((res) => {
+        setcurrentUser(res);
+      })
+      .catch((err) => {
+        setErrText(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+        setIsFail(true);
+      })
+      .finally(() => {
+        requestsCount--;
+        if (requestsCount === 0) {
+          setIsLoading(false);
+        }
+      });
+  
+    mainApi
+      .getSaveMovie()
+      .then((res) => {
+        setMyMovies(res);
+        localStorage.setItem("myMovies", JSON.stringify(res));
+      })
+      .catch((err) => {
+        setErrText(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+        setIsFail(true);
+      })
+      .finally(() => {
+        requestsCount--;
+        if (requestsCount === 0) {
+          setIsLoading(false);
+        }
+      });
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("isLogin")) return;
+    handleTokenCheck();
+    setLogin(true);
+    Promise.all([mainApi.getProfile(), mainApi.getSaveMovie()])
+      .then(([res, items]) => {
+        setcurrentUser(res);
+        setMyMovies(items);
+      })
+      .catch((err) => {
+        setIsFail(true);
+        setErrText(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+        setIsFail(true);
+      });
+    navigate();
+  }, []);
+
 
   function addMovie(movie, user) {
     mainApi
@@ -154,63 +246,7 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    if (!isLogin) return;
-    setIsLoading(true);
-    if (localStorage.getItem("movies")) {
-      setMovies(JSON.parse(localStorage.getItem("movies")));
-      setIsLoading(false);
-    } else {
-      moviesApi
-        .getMovies()
-        .then((res) => {
-          localStorage.setItem("movies", JSON.stringify(res));
-          setMovies(res);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setErrText(
-            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-          );
-          setIsFail(true);
-          setIsLoading(false);
-        });
-    }
-    Promise.all([mainApi.getProfile(), mainApi.getSaveMovie()])
-      .then(([res, SaveItems, jwt]) => {
-        setcurrentUser(res);
-        setMyMovies(SaveItems);
-        localStorage.setItem("myMovies", JSON.stringify(SaveItems));
-      })
-      .catch((err) => {
-        setErrText(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-        setIsFail(true);
-        
-      });
-     
-  }, [isLogin]);
-
-  useEffect(() => {
-    if (!localStorage.getItem("isLogin")) return;
-    handleTokenCheck();
-    setLogin(true);
-    Promise.all([mainApi.getProfile(), mainApi.getSaveMovie()])
-      .then(([res, items]) => {
-        setcurrentUser(res);
-        setMyMovies(items);
-      })
-      .catch((err) => {
-        setIsFail(true);
-        setErrText(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-        setIsFail(true);
-      });
-    navigate();
-  }, []);
-
+  
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>

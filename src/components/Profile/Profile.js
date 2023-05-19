@@ -8,25 +8,35 @@ import { CurrentUserContext } from "../../context/CurrentContext";
 function Profile({ signOut, isLogin, isLoadingForm, handleUpdateUser }) {
   const user = useContext(CurrentUserContext);
   const [title, setIsTitle] = useState("");
-  const [name, setIsName] = useState(user.name);
-  const [email, setIsEmail] = useState(user.email);
-  
+  const [name, setIsName] = useState(localStorage.getItem("name") || user.name);
+  const [email, setIsEmail] = useState(localStorage.getItem("email") || user.email);
+
   useEffect(() => {
     setIsName(user.name);
     setIsEmail(user.email);
     setIsTitle(user.name);
   }, [user]);
+  useEffect(() => {
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+  }, [name, email]);
 
   const {
     register,
-    formState: { errors, isValid, dirtyFields },
+    formState: { errors, isValid, isDirty },
     handleSubmit,
-  } = useForm({ mode: "onChange" });
+    reset
+  } = useForm({ mode: "onChange",   defaultValues: {
+    name: localStorage.getItem("name") || name,
+    email: localStorage.getItem("email") || email
+  }});
 
   const onSubmit = (data) => {
+    if (data.name === user.name && data.email === user.email)  return;
     handleUpdateUser(data);
+    reset({ name: data.name, email: data.email });
   };
-
+  
   return (
     <>
       <Header isLogin={isLogin} />
@@ -42,7 +52,6 @@ function Profile({ signOut, isLogin, isLoadingForm, handleUpdateUser }) {
               <p className="form-profile__text">Имя</p>
               <label>
                 <input
-                  defaultValue={name || ""}
                   {...register("name", {
                     required: "Поле обязательно к заполнению.",
                     minLength: {
@@ -73,7 +82,6 @@ function Profile({ signOut, isLogin, isLoadingForm, handleUpdateUser }) {
               <p className="form-profile__text">E-mail</p>
               <label>
                 <input
-                  defaultValue={email || ""}
                   {...register("email", {
                     required: "Поле обязательно к заполнению.",
                     pattern: {
@@ -103,7 +111,7 @@ function Profile({ signOut, isLogin, isLoadingForm, handleUpdateUser }) {
             </div>
             <button
               type="submit"
-              disabled={!isValid || !Object.keys(dirtyFields).length > 0 || isLoadingForm}
+              disabled={!isValid || !isDirty || isLoadingForm}
               className={`form-profile__button ${
                 isValid ? "" : "form-profile__button_disabled"
               }`}

@@ -5,23 +5,34 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import {
+  SHORT_FILM_DURATION,
+  MAX_DISPLAY_START,
+  MAX_DISPLAY_ADD,
+  MID_DISPLAY,
+  MID_DISPLAY_START,
+  MIN_DISPLAY_ADD,
+  MIN_DISPLAY,
+  MIN_DISPLAY_START,
+} from "../../utils/const";
+
 function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
   const [search, setSearch] = useState("");
   const [isError, setIsError] = useState(false);
   const [isShortFilmsOnly, setIsShortFilmsOnly] = useState(false);
   const [visibleCardsCount, setVisibleCardsCount] = useState(2);
-  
+
   useEffect(() => {
     function updateVisibleCardsCount() {
       const screenWidth = window.innerWidth;
       let newVisibleCardsCount;
 
-      if (screenWidth < 560) {
-        newVisibleCardsCount = 5;
-      } else if (screenWidth < 1020) {
-        newVisibleCardsCount = 8;
+      if (screenWidth < MIN_DISPLAY) {
+        newVisibleCardsCount = MIN_DISPLAY_START;
+      } else if (screenWidth < MID_DISPLAY) {
+        newVisibleCardsCount = MID_DISPLAY_START;
       } else {
-        newVisibleCardsCount = 12;
+        newVisibleCardsCount = MAX_DISPLAY_START;
       }
       setVisibleCardsCount(newVisibleCardsCount);
     }
@@ -49,11 +60,11 @@ function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
   };
 
   const handleShowMoreButtonClick = () => {
-    let increment = 3;
+    let increment = MAX_DISPLAY_ADD;
 
     const screenWidth = window.innerWidth;
-    if (screenWidth < 1020) {
-      increment = 2;
+    if (screenWidth < MID_DISPLAY) {
+      increment = MIN_DISPLAY_ADD;
     }
     setVisibleCardsCount((prevCount) => prevCount + increment);
   };
@@ -63,7 +74,7 @@ function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
   const visibleMovies = isShortFilmsOnly
     ? myMovies.filter(
         (movie) =>
-          movie.duration <= 40 &&
+          movie.duration <= SHORT_FILM_DURATION &&
           movie.nameRU.toLowerCase().includes(search.toLowerCase())
       )
     : myMovies.filter((movie) =>
@@ -84,6 +95,9 @@ function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
         {isError && (
           <div className="movies__error">Нужно ввести ключевое слово</div>
         )}
+         {!isLoading && !isError && visibleMovies.length === 0 && (
+            <div className="movies__error">Ничего не найдено.</div>
+          )}
         {!isLoading && !isError && (
           <div className="movies-card-list">
             {visibleMovies.slice(0, visibleCardsCount).map((movie) => (
@@ -97,7 +111,7 @@ function SavedMovies({ isLogin, deleteMovie, myMovies, isLoading }) {
             ))}
           </div>
         )}
-        {isShowMoreButtonVisible && visibleMovies.length >= 5 && !isError && (
+        {!isLoading && isShowMoreButtonVisible && visibleMovies.length >= 5 && !isError && (
           <div className="show-more">
             <button
               className="show-more__button"

@@ -5,8 +5,17 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-
 import "./Movies.css";
+import {
+  SHORT_FILM_DURATION,
+  MAX_DISPLAY_START,
+  MAX_DISPLAY_ADD,
+  MID_DISPLAY,
+  MID_DISPLAY_START,
+  MIN_DISPLAY_ADD,
+  MIN_DISPLAY,
+  MIN_DISPLAY_START,
+} from "../../utils/const";
 
 function Movies({
   isLogin,
@@ -53,12 +62,12 @@ function Movies({
       const screenWidth = window.innerWidth;
       let newVisibleCardsCount;
 
-      if (screenWidth < 560) {
-        newVisibleCardsCount = 5;
-      } else if (screenWidth < 1020) {
-        newVisibleCardsCount = 8;
+      if (screenWidth < MIN_DISPLAY) {
+        newVisibleCardsCount = MIN_DISPLAY_START;
+      } else if (screenWidth < MID_DISPLAY) {
+        newVisibleCardsCount = MID_DISPLAY_START;
       } else {
-        newVisibleCardsCount = 12;
+        newVisibleCardsCount = MAX_DISPLAY_START;
       }
       setVisibleCardsCount(newVisibleCardsCount);
     }
@@ -86,10 +95,10 @@ function Movies({
   };
 
   const handleShowMoreButtonClick = () => {
-    let increment = 3;
+    let increment = MAX_DISPLAY_ADD;
     const screenWidth = window.innerWidth;
-    if (screenWidth < 1020) {
-      increment = 2;
+    if (screenWidth < MID_DISPLAY) {
+      increment = MIN_DISPLAY_ADD;
     }
     setVisibleCardsCount((prevCount) => prevCount + increment);
   };
@@ -99,14 +108,14 @@ function Movies({
   const visibleMovies = isShortFilmsOnly
     ? movies.filter(
         (movie) =>
-          movie.duration <= 40 &&
+          movie.duration <= SHORT_FILM_DURATION &&
           movie.nameRU.toLowerCase().includes(search.toLowerCase())
       )
     : movies.filter((movie) =>
     
        movie.nameRU.toLowerCase().includes(search.toLowerCase())
       );
-
+console.log(visibleMovies.length)
   return (
     <>
       <Header isLogin={isLogin} />
@@ -122,7 +131,7 @@ function Movies({
           {isError && (
             <div className="movies__error">Нужно ввести ключевое слово.</div>
           )}
-          {!isLoading && !isError && (localStorage.getItem("movies") || visibleMovies.length) === 0 && (
+          {!isLoading && !isError && visibleMovies.length === 0 && (
             <div className="movies__error">Ничего не найдено.</div>
           )}
           {!isLoading && !isError && (
