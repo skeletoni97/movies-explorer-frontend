@@ -22,7 +22,6 @@ function AboutProject() {
                 У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
                 соблюдать, чтобы успешно защититься.
               </p>
-              
             </div>
           </div>
           <div className="aboutProject__worcks"> 

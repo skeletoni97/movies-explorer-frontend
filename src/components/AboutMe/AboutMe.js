@@ -1,6 +1,7 @@
 import './AboutMe.css';
 import { Link } from "react-router-dom";
 import AboutMeFoto from '../../images/AboutMe-foto.png'
+
 function AboutMe() {
   return (
     <section className="aboutMe">

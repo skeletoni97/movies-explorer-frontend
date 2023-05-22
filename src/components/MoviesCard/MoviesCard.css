@@ -21,6 +21,7 @@
   max-height: 201px;
   object-fit: cover;
   width: 100%;
+  min-height: 196px;
 }
 @media screen and (max-width: 1020px) {
   .movies-card__image {
@@ -51,11 +52,17 @@
   transition: opacity 0.3s linear;
   cursor: pointer;
 }
+
 .movies-card__button:hover {
   opacity: 0.6;
 }
 .movies-card__button_hidden {
   display: none;
+}
+@media screen and (max-width: 560px) {
+  .movies-card__button_hidden {
+    display: block;
+  }
 }
 .movies-card__button_pink {
   background-color: #ee3465;

@@ -1,7 +1,7 @@
 .links__link {
   font-size: 13px;
   line-height: 18px;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   color: #000;
   cursor: pointer;
@@ -11,7 +11,7 @@
   opacity: 0.6;
 }
 .links__link.active {
-  font-weight: 400;
+  font-weight: 500;
 }
 .links {
   list-style: none;
